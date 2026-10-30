@@ -24,13 +24,15 @@ QL_CHUNK = 50  # training episodes per frame, so progress stays visible
 QL_PARAMS = dict(alpha=0.1, epsilon=1.0, epsilon_min=0.05, epsilon_decay=0.999)
 
 PANEL_HEIGHT = 56  # status panel drawn by gridworld.draw_grid
+MESSAGE_HEIGHT = 22  # extra line so long solver messages are not clipped
 BAR_HEIGHT = 44
 GRID_BOTTOM = GRID_SIZE * CELL_SIZE
-WINDOW_SIZE = (SCREEN_WIDTH, GRID_BOTTOM + PANEL_HEIGHT + BAR_HEIGHT)
+BAR_TOP = GRID_BOTTOM + PANEL_HEIGHT + MESSAGE_HEIGHT
+WINDOW_SIZE = (SCREEN_WIDTH, BAR_TOP + BAR_HEIGHT)
 
 APPROACHES = ["Value Iteration", "Q-Learning"]
 BUTTON_RECTS = [
-    pygame.Rect(10 + i * 170, GRID_BOTTOM + PANEL_HEIGHT + 7, 160, 30) for i in range(len(APPROACHES))
+    pygame.Rect(10 + i * 150, BAR_TOP + 7, 140, 30) for i in range(len(APPROACHES))
 ]
 ACTIVE_COLOR = (70, 130, 255)
 IDLE_COLOR = (225, 228, 235)
@@ -162,22 +164,25 @@ class SolverApp:
     def draw(self, screen, font, small_font) -> None:
         draw_grid(self.world, screen, font, small_font)
         panel_y = GRID_BOTTOM
-        # Replace draw_grid's help line with this app's own status line.
-        pygame.draw.rect(screen, (245, 247, 250), pygame.Rect(0, panel_y + 28, SCREEN_WIDTH, PANEL_HEIGHT - 28))
+        # Replace draw_grid's help line with this app's own status and message lines.
+        pygame.draw.rect(
+            screen, (245, 247, 250), pygame.Rect(0, panel_y + 28, SCREEN_WIDTH, PANEL_HEIGHT - 28 + MESSAGE_HEIGHT)
+        )
         name = APPROACHES[self.approach] if self.approach is not None else "none"
         speed = "paused" if self.paused else f"{self.step_ms} ms/step"
-        screen.blit(small_font.render(f"Solver: {name} | {speed} | {self.message}", True, TEXT_COLOR), (10, panel_y + 32))
+        screen.blit(small_font.render(f"Solver: {name} | {speed}", True, TEXT_COLOR), (10, panel_y + 32))
+        screen.blit(small_font.render(self.message, True, TEXT_COLOR), (10, panel_y + 54))
 
-        pygame.draw.rect(screen, (235, 238, 244), pygame.Rect(0, panel_y + PANEL_HEIGHT, SCREEN_WIDTH, BAR_HEIGHT))
+        pygame.draw.rect(screen, (235, 238, 244), pygame.Rect(0, BAR_TOP, SCREEN_WIDTH, BAR_HEIGHT))
         for i, (rect, label) in enumerate(zip(BUTTON_RECTS, APPROACHES)):
             active = i == self.approach
             pygame.draw.rect(screen, ACTIVE_COLOR if active else IDLE_COLOR, rect, border_radius=6)
             text = small_font.render(f"{i + 1}  {label}", True, (255, 255, 255) if active else TEXT_COLOR)
             screen.blit(text, text.get_rect(center=rect.center))
         hint = small_font.render("SPACE pause | R rerun | N layout", True, TEXT_COLOR)
-        screen.blit(hint, (BUTTON_RECTS[-1].right + 12, BUTTON_RECTS[0].y + 3))
+        screen.blit(hint, (BUTTON_RECTS[-1].right + 12, BUTTON_RECTS[0].y - 1))
         speed_hint = small_font.render("UP/DOWN speed | ESC quit", True, TEXT_COLOR)
-        screen.blit(speed_hint, (BUTTON_RECTS[-1].right + 12, BUTTON_RECTS[0].y + 17))
+        screen.blit(speed_hint, (BUTTON_RECTS[-1].right + 12, BUTTON_RECTS[0].y + 15))
 
 
 def main() -> None:

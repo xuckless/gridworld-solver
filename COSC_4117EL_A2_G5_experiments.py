@@ -1,6 +1,6 @@
 """Experiments for Parts 2 and 3; all figures are saved to plots/.
 
-AI use: originally implemented by our group (G1); refactored and bug-fixed with the help of
+AI use: originally implemented by our group (G5); refactored and bug-fixed with the help of
 Claude (Anthropic, Claude Code). Claude-assisted changes in this file: `part2` (the former main
 body, with a fix for a crash when no run reaches the convergence criterion), and the whole of
 Part 3: `simulate`, `changed_states`, `plot_p_policies`, `plot_p_curves`, `part3`.
@@ -9,7 +9,7 @@ Part 2: Q-learning hyperparameter / seed study and comparison with the value-ite
 Part 3: value iteration vs Q-learning for intended-action probabilities p = 1.00, 0.90, 0.80,
         and the states whose preferred action changes as p decreases.
 
-Usage: python COSC_4117EL_A2_G1_experiments.py [--part 2|3|all] [--seeds 0 1 2 3 4]
+Usage: python COSC_4117EL_A2_G5_experiments.py [--part 2|3|all] [--seeds 0 1 2 3 4]
 """
 
 import argparse
@@ -23,9 +23,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from gridworld import CONGESTION, DOCK, PACKING, PICKUP, SHELF, WarehouseGridWorld
-from COSC_4117EL_A2_G1_mdp import P_VALUES, PHASES, State, WarehouseMDP
-from COSC_4117EL_A2_G1_q_learning import QLearningAgent, StochasticWarehouseEnv, run_episode, train
-from COSC_4117EL_A2_G1_value_iteration import optimal_actions, q_value, value_iteration
+from COSC_4117EL_A2_G5_mdp import P_VALUES, PHASES, State, WarehouseMDP
+from COSC_4117EL_A2_G5_q_learning import QLearningAgent, StochasticWarehouseEnv, run_episode, train
+from COSC_4117EL_A2_G5_value_iteration import optimal_actions, q_value, value_iteration
 
 PLOT_DIR = "plots"
 GAMMA = 0.99  # every policy is judged under the task discount, whatever gamma it was trained with

@@ -1,6 +1,6 @@
 """MDP formulation of the warehouse task (Part 1.1), built on the provided gridworld framework.
 
-AI use: originally implemented by our group (G1); refactored and bug-fixed with the help of
+AI use: originally implemented by our group (G5); refactored and bug-fixed with the help of
 Claude (Anthropic, Claude Code). Claude-assisted changes in this file: the reward table from
 the former reward_system.py was folded into `WarehouseMDP._move`, and the intended-action
 probability `p` was made a parameter (`WarehouseMDP.__init__`, `transitions`) for Part 3,

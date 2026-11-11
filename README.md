@@ -1,4 +1,4 @@
-# COSC 4117EL Assignment 2 (Group 1): Warehouse Robot with DP and RL
+# COSC 4117EL Assignment 2 (Group 5): Warehouse Robot with DP and RL
 
 Value iteration (Part 1), Q-learning (Part 2), and a stochasticity study over the intended-action
 probability p = 1.00 / 0.90 / 0.80 (Part 3) on the provided `gridworld.py` warehouse environment,
@@ -9,25 +9,33 @@ plus a live pygame visualiser.
 | File | Purpose |
 |---|---|
 | `gridworld.py` | Provided environment framework, **unchanged** |
-| `COSC_4117EL_A2_G1_mdp.py` | MDP formulation: states, slip transitions with parameter `p`, rewards, terminal test |
-| `COSC_4117EL_A2_G1_value_iteration.py` | Part 1: value iteration, policy extraction, text policy grids |
-| `COSC_4117EL_A2_G1_q_learning.py` | Part 2: black-box environment, epsilon-greedy Q-learning agent, training, greedy evaluation run |
-| `COSC_4117EL_A2_G1_experiments.py` | Parts 2 and 3: hyperparameter/seed study, VI vs Q comparison, p sweep, plots in `plots/` |
-| `COSC_4117EL_A2_G1_solver_ui.py` | Step-by-step visualiser for both solvers and every p |
-| `COSC_4117EL_A2_G1_main.py` | Launches the visualiser |
+| `COSC_4117EL_A2_G5_mdp.py` | MDP formulation: states, slip transitions with parameter `p`, rewards, terminal test |
+| `COSC_4117EL_A2_G5_value_iteration.py` | Part 1: value iteration, policy extraction, text policy grids |
+| `COSC_4117EL_A2_G5_q_learning.py` | Part 2: black-box environment, epsilon-greedy Q-learning agent, training, greedy evaluation run |
+| `COSC_4117EL_A2_G5_experiments.py` | Parts 2 and 3: hyperparameter/seed study, VI vs Q comparison, p sweep, plots in `plots/` |
+| `COSC_4117EL_A2_G5_solver_ui.py` | Step-by-step visualiser for both solvers and every p |
+| `COSC_4117EL_A2_G5_main.py` | Launches the visualiser |
 
 ### Changes to the provided environment
 
 `gridworld.py` is not modified. The stochastic transitions (intended direction with probability p,
 each perpendicular direction with (1 - p) / 2, blocked moves leave the robot in place) are implemented
-in `COSC_4117EL_A2_G1_mdp.py` on top of the environment's grid, positions, reward constants and
+in `COSC_4117EL_A2_G5_mdp.py` on top of the environment's grid, positions, reward constants and
 `state_to_index`. The step limit (`max_steps = 120`) of the environment is used as the episode cutoff.
 
 ## Setup
 
-```sh
+**macOS / Linux:**
+
+```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
+```
+
+**Windows:**
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python -m pip install -r requirements.txt
 ```
 
 The project uses `pygame-ce` (imported as `pygame`); the original `pygame` 2.6.1 fails to load its font
@@ -35,11 +43,22 @@ module on Python 3.14. If it is installed, run `.venv/bin/python -m pip uninstal
 
 ## Run
 
+**macOS / Linux:**
+
 ```sh
-.venv/bin/python COSC_4117EL_A2_G1_value_iteration.py [--p 0.8] [--gamma 0.99] [--theta 1e-6] [--seed 42]
-.venv/bin/python COSC_4117EL_A2_G1_q_learning.py      [--p 0.8] [--alpha 0.1] [--episodes 5000] [--seed 42]
-.venv/bin/python COSC_4117EL_A2_G1_experiments.py     [--part 2|3|all] [--seeds 0 1 2 3 4]
-.venv/bin/python COSC_4117EL_A2_G1_main.py            # visualiser
+.venv/bin/python COSC_4117EL_A2_G5_value_iteration.py [--p 0.8] [--gamma 0.99] [--theta 1e-6] [--seed 42]
+.venv/bin/python COSC_4117EL_A2_G5_q_learning.py      [--p 0.8] [--alpha 0.1] [--episodes 5000] [--seed 42]
+.venv/bin/python COSC_4117EL_A2_G5_experiments.py     [--part 2|3|all] [--seeds 0 1 2 3 4]
+.venv/bin/python COSC_4117EL_A2_G5_main.py            # visualiser
+```
+
+**Windows:**
+
+```
+.\.venv\Scripts\python COSC_4117EL_A2_G5_value_iteration.py [--p 0.8] [--gamma 0.99] [--theta 1e-6] [--seed 42]
+.\.venv\Scripts\python COSC_4117EL_A2_G5_q_learning.py      [--p 0.8] [--alpha 0.1] [--episodes 5000] [--seed 42]
+.\.venv\Scripts\python COSC_4117EL_A2_G5_experiments.py      [--part 2|3|all] [--seeds 0 1 2 3 4]
+.\.venv\Scripts\python COSC_4117EL_A2_G5_main.py             # visualiser`
 ```
 
 Defaults: layout seed 42, gamma = 0.99, theta = 1e-6, Q-learning seeds 0-4, 5000 episodes,

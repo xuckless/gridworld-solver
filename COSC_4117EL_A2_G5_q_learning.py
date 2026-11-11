@@ -1,6 +1,6 @@
 """Tabular Q-learning for the warehouse task (Part 2).
 
-AI use: originally implemented by our group (G1); refactored and bug-fixed with the help of
+AI use: originally implemented by our group (G5); refactored and bug-fixed with the help of
 Claude (Anthropic, Claude Code). Claude-assisted changes in this file: `run_episode` (new; shared
 by `train`, `evaluate` and the UI, and returns the visited path), the `p` parameter of
 `StochasticWarehouseEnv`, and the `--p` option in `main`.
@@ -19,8 +19,8 @@ from typing import Callable, Dict, Iterable, List, Optional, Tuple
 import numpy as np
 
 from gridworld import WarehouseGridWorld
-from COSC_4117EL_A2_G1_mdp import DEFAULT_P, PHASES, State, WarehouseMDP
-from COSC_4117EL_A2_G1_value_iteration import render_policy
+from COSC_4117EL_A2_G5_mdp import DEFAULT_P, PHASES, State, WarehouseMDP
+from COSC_4117EL_A2_G5_value_iteration import render_policy
 
 
 class StochasticWarehouseEnv:

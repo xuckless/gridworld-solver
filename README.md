@@ -26,6 +26,7 @@ in `COSC_4117EL_A2_G5_mdp.py` on top of the environment's grid, positions, rewar
 ## Setup
 
 **macOS / Linux:**
+
 ```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
@@ -42,11 +43,22 @@ module on Python 3.14. If it is installed, run `.venv/bin/python -m pip uninstal
 
 ## Run
 
+**macOS / Linux:**
+
 ```sh
 .venv/bin/python COSC_4117EL_A2_G5_value_iteration.py [--p 0.8] [--gamma 0.99] [--theta 1e-6] [--seed 42]
 .venv/bin/python COSC_4117EL_A2_G5_q_learning.py      [--p 0.8] [--alpha 0.1] [--episodes 5000] [--seed 42]
 .venv/bin/python COSC_4117EL_A2_G5_experiments.py     [--part 2|3|all] [--seeds 0 1 2 3 4]
 .venv/bin/python COSC_4117EL_A2_G5_main.py            # visualiser
+```
+
+**Windows:**
+
+```
+.\.venv\Scripts\python COSC_4117EL_A2_G5_value_iteration.py [--p 0.8] [--gamma 0.99] [--theta 1e-6] [--seed 42]
+.\.venv\Scripts\python COSC_4117EL_A2_G5_q_learning.py      [--p 0.8] [--alpha 0.1] [--episodes 5000] [--seed 42]
+.\.venv\Scripts\python COSC_4117EL_A2_G5_experiments.py      [--part 2|3|all] [--seeds 0 1 2 3 4]
+.\.venv\Scripts\python COSC_4117EL_A2_G5_main.py             # visualiser`
 ```
 
 Defaults: layout seed 42, gamma = 0.99, theta = 1e-6, Q-learning seeds 0-4, 5000 episodes,

@@ -1,6 +1,6 @@
 """Value iteration for the warehouse MDP (Part 1.2).
 
-AI use: originally implemented by our group (G1); refactored and bug-fixed with the help of
+AI use: originally implemented by our group (G5); refactored and bug-fixed with the help of
 Claude (Anthropic, Claude Code). Claude-assisted changes in this file: `value_iteration_sweeps`
 (new generator yielding one Bellman sweep at a time, used by the UI animation),
 `greedy_policy` (split out of `value_iteration`), `optimal_actions`, and the `--p` option in `main`.
@@ -12,7 +12,7 @@ import argparse
 from typing import Dict, Iterator, Tuple
 
 from gridworld import CONGESTION, DOCK, PACKING, PICKUP, SHELF, WarehouseGridWorld
-from COSC_4117EL_A2_G1_mdp import DEFAULT_P, PHASES, State, WarehouseMDP
+from COSC_4117EL_A2_G5_mdp import DEFAULT_P, PHASES, State, WarehouseMDP
 
 ARROWS = {"up": "^", "down": "v", "left": "<", "right": ">"}
 Values = Dict[State, float]

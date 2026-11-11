@@ -1,6 +1,6 @@
 """Live pygame visualiser for the warehouse solvers (value iteration and Q-learning, Parts 1-3).
 
-AI use: originally implemented by our group (G1); refactored and bug-fixed with the help of
+AI use: originally implemented by our group (G5); refactored and bug-fixed with the help of
 Claude (Anthropic, Claude Code). Claude-assisted changes in this file: the step-by-step "glow"
 visualisation (`SolverApp.tick`, `_vi_sweep`, `_ql_chunk`, `_robot_step`, `fade`, `draw_overlay`,
 `draw_arrow`), the p selector for Part 3 (`set_p`, `_reference_policy`, changed-action frames),
@@ -36,9 +36,9 @@ from gridworld import (
     WarehouseGridWorld,
     draw_grid,
 )
-from COSC_4117EL_A2_G1_mdp import P_VALUES, PHASES, State, WarehouseMDP
-from COSC_4117EL_A2_G1_q_learning import QLearningAgent, StochasticWarehouseEnv, run_episode
-from COSC_4117EL_A2_G1_value_iteration import (
+from COSC_4117EL_A2_G5_mdp import P_VALUES, PHASES, State, WarehouseMDP
+from COSC_4117EL_A2_G5_q_learning import QLearningAgent, StochasticWarehouseEnv, run_episode
+from COSC_4117EL_A2_G5_value_iteration import (
     greedy_policy,
     optimal_actions,
     value_iteration,
